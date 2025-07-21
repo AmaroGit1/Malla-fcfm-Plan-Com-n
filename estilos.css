@@ -1,46 +1,283 @@
-/* Mantengo todos tus estilos originales exactamente igual */
-/* Solo modifico el media query para móviles */
+:root {
+    --primary-color: #0073E6;
+    --secondary-color: #2ECC71;
+    --dark-color: #1A1A1A;
+    --light-color: #ecf0f1;
+    --danger-color: #e74c3c;
+    --warning-color: #f39c12;
+    --border-radius: 8px;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #E1F5FE;
+    color: var(--dark-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: var(--dark-color);
+}
+
+header p {
+    color: #7f8c8d;
+    margin-bottom: 20px;
+}
+
+.progress-container {
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 20px;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.progress {
+    height: 100%;
+    background-color: var(--secondary-color);
+    width: 0%;
+    transition: var(--transition);
+}
+
+.stats {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+.stat-box {
+    background-color: white;
+    padding: 15px 25px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    min-width: 120px;
+    transition: var(--transition);
+}
+
+.stat-box:hover {
+    transform: translateY(-5px);
+}
+
+.stat-box span:first-child {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.stat-box span:last-child {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+}
+
+.semesters-container {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.semester {
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 20px;
+    min-width: 250px;
+    flex-shrink: 0;
+}
+
+.semester h2 {
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--dark-color);
+    border-bottom: 2px solid var(--light-color);
+    padding-bottom: 10px;
+}
+
+.course {
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.course-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.course-name {
+    font-weight: 500;
+    flex-grow: 1;
+}
+
+.course-credits {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.course-btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: var(--border-radius);
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.course-btn:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+.course-btn.approved {
+    background-color: var(--secondary-color) !important;
+    color: white;
+    box-shadow: 0 0 0 2px rgba(46, 204, 113, 0.3);
+}
+
+.course-btn.approved:hover {
+    background-color: #27ae60 !important;
+    transform: scale(1.02);
+}
+
+.course-btn.locked {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+}
+
+.course-btn.locked:hover {
+    background-color: #bdc3c7;
+    transform: none;
+}
+
+.course-id {
+    position: absolute;
+    bottom: -5px;
+    right: 0;
+    font-size: 0.7rem;
+    color: #333333;
+    font-weight: 600;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 1px 5px;
+    border-radius: 3px;
+}
+
+.prerequisites {
+    font-size: 0.7rem;
+    color: #7f8c8d;
+    margin-top: 3px;
+    min-height: 15px;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.control-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: var(--border-radius);
+    background-color: var(--dark-color);
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.control-btn:hover {
+    background-color: #34495e;
+    transform: translateY(-2px);
+}
+
+.control-btn i {
+    font-size: 0.9rem;
+}
+
+/* MODIFICACIÓN SOLO PARA MÓVILES - SCROLL HORIZONTAL */
 @media (max-width: 768px) {
-    /* Mantengo todos tus estilos originales de: */
-    /* - Colores */
-    /* - Botones */
-    /* - Barra de progreso */
-    /* - Estadísticas */
-    /* - Tipografía */
-    
-    /* ÚNICO CAMBIO: Ajuste para semestres en móvil */
     .semesters-container {
         display: flex;
         flex-direction: row; /* Fuerza disposición horizontal */
         overflow-x: auto; /* Permite scroll horizontal */
         -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
-        padding-bottom: 20px;
-        gap: 15px; /* Espacio entre semestres */
+        scroll-snap-type: x proximity; /* Mejora el desplazamiento */
+        gap: 15px;
+        padding: 10px 0 20px 10px; /* Añade espacio para el scroll */
     }
 
     .semester {
-        min-width: 280px; /* Ancho mínimo para mantener legibilidad */
-        flex-shrink: 0; /* Evita que se encojan */
-        /* Mantengo todos tus estilos originales del semestre */
-        background-color: white;
-        border-radius: var(--border-radius);
-        box-shadow: var(--box-shadow);
-        padding: 20px;
+        min-width: 85vw; /* Ocupa 85% del ancho de pantalla */
+        scroll-snap-align: start; /* Alinea correctamente al hacer scroll */
     }
 
-    /* Mantengo exactamente igual el resto de elementos */
-    .progress-bar, .stats, .controls, .course-btn {
-        /* Todos los estilos se conservan exactamente igual */
+    /* Barra de scroll personalizada */
+    .semesters-container::-webkit-scrollbar {
+        height: 6px;
+    }
+
+    .semesters-container::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.05);
+        border-radius: 3px;
+    }
+
+    .semesters-container::-webkit-scrollbar-thumb {
+        background: var(--primary-color);
+        border-radius: 3px;
     }
 }
 
-/* Añado solo esto para mejorar la experiencia de scroll */
-.semesters-container::-webkit-scrollbar {
-    height: 5px;
-}
-
-.semesters-container::-webkit-scrollbar-thumb {
-    background: var(--primary-color);
-    border-radius: 10px;
+/* Ajustes para pantallas muy pequeñas */
+@media (max-width: 480px) {
+    .semester {
+        min-width: 90vw;
+    }
 }
