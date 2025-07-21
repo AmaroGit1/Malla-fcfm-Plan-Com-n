@@ -29,14 +29,12 @@ document.addEventListener('DOMContentLoaded', () => {
         { id: 22, name: 'Módulo Interdisciplinario', credits: 3, semester: 4, prereqs: [16, 11] }
     ];
 
-    // Carga los cursos aprobados desde el almacenamiento local del navegador
     let approvedCourses = new Set(JSON.parse(localStorage.getItem('approvedCourses')) || []);
     const totalCredits = coursesData.reduce((sum, course) => sum + course.credits, 0);
 
     const grid = document.getElementById('curriculum-grid');
     const resetButton = document.getElementById('reset-button');
     
-    // Actualiza la barra de progreso y el contador de créditos
     const updateProgress = () => {
         const approvedCredits = coursesData
             .filter(course => approvedCourses.has(course.id))
@@ -49,21 +47,17 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('progress-bar').style.width = `${progressPercentage}%`;
     };
     
-    // Verifica si un curso puede ser tomado (si todos sus prerrequisitos están aprobados)
     const checkAvailability = (course) => {
         if (course.prereqs.length === 0) return true;
         return course.prereqs.every(prereqId => approvedCourses.has(prereqId));
     };
 
-    // La función principal que dibuja todos los cursos en la pantalla
     const renderCourses = () => {
-        // Primero, limpia todas las columnas de semestres
         for (let i = 1; i <= 4; i++) {
             const container = document.getElementById(`semester-${i}`);
             if (container) container.innerHTML = '';
         }
 
-        // Luego, crea y añade cada tarjeta de curso a su respectivo semestre
         coursesData.forEach(course => {
             const container = document.getElementById(`semester-${course.semester}`);
             if (!container) return;
@@ -92,18 +86,25 @@ document.addEventListener('DOMContentLoaded', () => {
         updateProgress();
     };
 
-    // Maneja el clic en una tarjeta de curso
     const handleCourseClick = (e) => {
         const card = e.target.closest('.course-card');
-        if (card && card.classList.contains('available')) {
-            const courseId = parseInt(card.dataset.id, 10);
+        if (!card || card.classList.contains('locked')) return;
+        
+        const courseId = parseInt(card.dataset.id, 10);
+
+        // Lógica para aprobar o des-aprobar
+        if (approvedCourses.has(courseId)) {
+            // Si ya está aprobado, lo quitamos
+            approvedCourses.delete(courseId);
+        } else {
+            // Si está disponible, lo aprobamos
             approvedCourses.add(courseId);
-            localStorage.setItem('approvedCourses', JSON.stringify([...approvedCourses]));
-            renderCourses(); // Vuelve a dibujar todo para reflejar el cambio
         }
+        
+        localStorage.setItem('approvedCourses', JSON.stringify([...approvedCourses]));
+        renderCourses();
     };
 
-    // Maneja el clic en el botón de reinicio
     const handleReset = () => {
         if (confirm('¿Estás seguro de que quieres reiniciar todo tu progreso?')) {
             approvedCourses.clear();
@@ -112,9 +113,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Asigna los eventos a los elementos
     grid.addEventListener('click', handleCourseClick);
     resetButton.addEventListener('click', handleReset);
+
+    renderCourses();
+});
 
     // Dibuja el estado inicial de la malla al cargar la página
     renderCourses();
