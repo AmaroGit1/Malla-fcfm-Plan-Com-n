@@ -3,57 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malla Plan Común fcfm</title>
-    
+    <title>Malla Interactiva Universitaria</title>
     <link rel="stylesheet" href="estilos.css">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/97f74813f5.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-
-    <header>
-        <h1>Malla Plan Común fcfm</h1>
-        <div class="progress-container">
-            <div class="progress-info">
-                <span>Créditos Aprobados: <span id="credits-approved">0</span> / <span id="credits-total">0</span></span>
+    <div class="container">
+        <header>
+            <h1>Malla Curricular Interactiva</h1>
+            <p>Selecciona los cursos aprobados para visualizar tu progreso</p>
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress" id="progress-bar"></div>
+                </div>
+                <span id="progress-text">0% completado</span>
             </div>
-            <div class="progress-bar-background">
-                <div id="progress-bar" class="progress-bar-foreground"></div>
+            <div class="stats">
+                <div class="stat-box">
+                    <span id="approved-count">0</span>
+                    <span>Aprobados</span>
+                </div>
+                <div class="stat-box">
+                    <span id="available-count">0</span>
+                    <span>Disponibles</span>
+                </div>
+                <div class="stat-box">
+                    <span id="remaining-count">0</span>
+                    <span>Pendientes</span>
+                </div>
+                <div class="stat-box">
+                    <span id="total-credits">0</span>
+                    <span>Créditos</span>
+                </div>
             </div>
-        </div>
-        <button id="reset-button" class="reset-button" title="Reiniciar progreso">
-            <i class="fa-solid fa-arrow-rotate-left"></i>
-            Reiniciar
-        </button>
-    </header>
+        </header>
 
-    <main id="curriculum-grid" class="curriculum-grid">
-        <div class="semester-column">
-            <h2>Semestre 1</h2>
-            <div id="semester-1" class="courses-container"></div>
+        <div class="semesters-container">
+            <!-- Los semestres se generarán dinámicamente con JavaScript -->
         </div>
-        <div class="semester-column">
-            <h2>Semestre 2</h2>
-            <div id="semester-2" class="courses-container"></div>
-        </div>
-        <div class="semester-column">
-            <h2>Semestre 3</h2>
-            <div id="semester-3" class="courses-container"></div>
-        </div>
-        <div class="semester-column">
-            <h2>Semestre 4</h2>
-            <div id="semester-4" class="courses-container"></div>
-        </div>
-    </main>
-    
-    <script src="script.js"></script>
 
-</body>
-</html>
+        <div class="controls">
+            <button id="reset-btn" class="control-btn">
+                <i class="fas fa-undo"></i> Reiniciar
+            </button>
+            <button id="save-btn" class="control-btn">
+                <i class="fas fa-save"></i> Guardar Progreso
+            </button>
+        </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
