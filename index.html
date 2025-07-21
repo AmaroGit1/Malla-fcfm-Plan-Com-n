@@ -5,50 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Malla Plan Común FCFM</title>
     <link rel="stylesheet" href="estilos.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <div class="stars-container">
+        <div id="stars"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div>
+    </div>
+    
     <div class="container">
-        <header>
-            <h1>Malla Plan Común FCFM</h1>
-            <p>Selecciona los cursos aprobados para visualizar tu progreso</p>
-            <div class="progress-container">
-                <div class="progress-bar">
-                    <div class="progress" id="progress-bar"></div>
+        <header class="header-stem">
+            <div class="logo-container">
+                <div class="science-icon">
+                    <i class="fas fa-atom"></i>
+                    <i class="fas fa-rocket"></i>
+                    <i class="fas fa-mountain"></i>
                 </div>
-                <span id="progress-text">0% completado</span>
+                <h1>Plan Común FCFM</h1>
             </div>
-            <div class="stats">
-                <div class="stat-box">
-                    <span id="approved-count">0</span>
-                    <span>Aprobados</span>
+            <p class="subtitle">Tu camino a través de las ciencias fundamentales</p>
+            
+            <div class="progress-section">
+                <div class="progress-container">
+                    <div class="progress-labels">
+                        <span>Progreso</span>
+                        <span id="progress-text">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" id="progress-bar"></div>
+                    </div>
                 </div>
-                <div class="stat-box">
-                    <span id="available-count">0</span>
-                    <span>Disponibles</span>
-                </div>
-                <div class="stat-box">
-                    <span id="remaining-count">0</span>
-                    <span>Pendientes</span>
-                </div>
-                <div class="stat-box">
-                    <span id="total-credits">0</span>
-                    <span>Créditos</span>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value" id="approved-count">0</div>
+                        <div class="stat-label"><i class="fas fa-check-circle"></i> Aprobados</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="available-count">0</div>
+                        <div class="stat-label"><i class="fas fa-unlock"></i> Disponibles</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="remaining-count">0</div>
+                        <div class="stat-label"><i class="fas fa-book"></i> Pendientes</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="total-credits">0</div>
+                        <div class="stat-label"><i class="fas fa-graduation-cap"></i> Créditos</div>
+                    </div>
                 </div>
             </div>
         </header>
 
-        <div class="semesters-container">
-            <!-- Los semestres se generarán dinámicamente con JavaScript -->
-        </div>
+        <main class="malla-container">
+            <div class="semesters-grid" id="semesters-container">
+                <!-- Semestres se generarán aquí -->
+            </div>
+        </main>
 
-        <div class="controls">
-            <button id="reset-btn" class="control-btn">
-                <i class="fas fa-undo"></i> Reiniciar
+        <div class="action-buttons">
+            <button id="reset-btn" class="action-btn reset-btn">
+                <i class="fas fa-eraser"></i> Reiniciar Todo
             </button>
-            <button id="save-btn" class="control-btn">
-                <i class="fas fa-save"></i> Guardar Progreso
+            <button id="save-btn" class="action-btn save-btn">
+                <i class="fas fa-save"></i> Guardar Avance
             </button>
         </div>
     </div>
