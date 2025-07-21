@@ -1,36 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malla Plan Común Interactiva</title>
-    <link rel="stylesheet" href="estilos.css">
+    <title>Malla Interactiva de Ingeniería</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/97f74813f5.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <h1>Malla Interactiva - Plan Común Ingeniería</h1>
-    <div class="grid-container">
-        <div class="course" data-id="1" data-prereqs="">Intro. Cálculo (6cr)</div>
-        <div class="course" data-id="2" data-prereqs="">Intro. Álgebra (6cr)</div>
-        <div class="course" data-id="3" data-prereqs="">Intro. Física (6cr)</div>
-        <div class="course" data-id="4" data-prereqs="">Biología (3cr)</div>
-        <div class="course" data-id="5" data-prereqs="">Innovación (6cr)</div>
-        <div class="course" data-id="6" data-prereqs="">Computación (3cr)</div>
-        <div class="course" data-id="7" data-prereqs="1">Diferencial (6cr)</div>
-        <div class="course" data-id="8" data-prereqs="2">Lineal (6cr)</div>
-        <div class="course" data-id="9" data-prereqs="1,2,3">Moderna (6cr)</div>
-        <div class="course" data-id="10" data-prereqs="">Programación (6cr)</div>
-        <div class="course" data-id="11" data-prereqs="5">Proyectos (3cr)</div>
-        <div class="course" data-id="12" data-prereqs="7,8">C.V.V (6cr)</div>
-        <div class="course" data-id="13" data-prereqs="7,8">E.D.O (6cr)</div>
-        <div class="course" data-id="14" data-prereqs="7,8,9">Mecánica (6cr)</div>
-        <div class="course" data-id="15" data-prereqs="9,10">Química (6cr)</div>
-        <div class="course" data-id="16" data-prereqs="7,9">Métodos (6cr)</div>
-        <div class="course" data-id="17" data-prereqs="12,13">C.A.A (6cr)</div>
-        <div class="course" data-id="18" data-prereqs="12">Economía (6cr)</div>
-        <div class="course" data-id="19" data-prereqs="12,13,14">Electro (6cr)</div>
-        <div class="course" data-id="20" data-prereqs="12,14,15">Termodinámica (6cr)</div>
-        <div class="course" data-id="21" data-prereqs="12,14,15">Termodinámica Química (6cr)</div>
-        <div class="course" data-id="22" data-prereqs="16,11">Módulo Interdisciplinario (3cr)</div>
+
+    <header>
+        <h1>Malla Interactiva</h1>
+        <div class="progress-container">
+            <div class="progress-info">
+                <span>Créditos Aprobados: <span id="credits-approved">0</span> / <span id="credits-total">0</span></span>
+            </div>
+            <div class="progress-bar-background">
+                <div id="progress-bar" class="progress-bar-foreground"></div>
+            </div>
+        </div>
+        <button id="reset-button" class="reset-button" title="Reiniciar progreso">
+            <i class="fa-solid fa-arrow-rotate-left"></i>
+            Reiniciar
+        </button>
+    </header>
+
+    <main id="curriculum-grid" class="curriculum-grid">
+        <div class="semester-column">
+            <h2>Semestre 1</h2>
+            <div id="semester-1" class="courses-container"></div>
+        </div>
+        <div class="semester-column">
+            <h2>Semestre 2</h2>
+            <div id="semester-2" class="courses-container"></div>
+        </div>
+        <div class="semester-column">
+            <h2>Semestre 3</h2>
+            <div id="semester-3" class="courses-container"></div>
+        </div>
+        <div class="semester-column">
+            <h2>Semestre 4</h2>
+            <div id="semester-4" class="courses-container"></div>
+        </div>
+    </main>
+    
+    <script src="script.js"></script>
+
+</body>
+</html>
     </div>
     <script src="script.js"></script>
 </body>
