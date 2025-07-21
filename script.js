@@ -1,5 +1,3 @@
-## 🧩 `script.js`
-```javascript
 const courses = [
     {id: 1, name: "Intro. Cálculo", credits: 6, prereqs: []},
     {id: 2, name: "Intro. Álgebra", credits: 6, prereqs: []},
@@ -36,8 +34,8 @@ function renderCourses() {
         div.className = `course ${isUnlocked ? 'unlocked' : 'locked'}`;
         div.innerHTML = `
             <h2>${course.name}</h2>
-            <p>Cr: ${course.credits}</p>
-            <p>Req: ${course.prereqs.join(', ') || 'Nada'}</p>
+            <p>Créditos: ${course.credits}</p>
+            <p>Prerrequisitos: ${course.prereqs.length ? course.prereqs.join(', ') : 'Ninguno'}</p>
             <span class="id">ID: ${course.id}</span>
         `;
         if (isUnlocked) {
@@ -54,5 +52,4 @@ function renderCourses() {
 }
 
 renderCourses();
-```
-
+    
