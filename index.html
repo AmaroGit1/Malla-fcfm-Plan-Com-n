@@ -8,8 +8,30 @@
 </head>
 <body>
     <h1>Malla Interactiva - Plan Común Ingeniería</h1>
-    <div id="grid" class="grid-container"></div>
+    <div class="grid-container">
+        <div class="course" data-id="1" data-prereqs="">Intro. Cálculo (6cr)</div>
+        <div class="course" data-id="2" data-prereqs="">Intro. Álgebra (6cr)</div>
+        <div class="course" data-id="3" data-prereqs="">Intro. Física (6cr)</div>
+        <div class="course" data-id="4" data-prereqs="">Biología (3cr)</div>
+        <div class="course" data-id="5" data-prereqs="">Innovación (6cr)</div>
+        <div class="course" data-id="6" data-prereqs="">Computación (3cr)</div>
+        <div class="course" data-id="7" data-prereqs="1">Diferencial (6cr)</div>
+        <div class="course" data-id="8" data-prereqs="2">Lineal (6cr)</div>
+        <div class="course" data-id="9" data-prereqs="1,2,3">Moderna (6cr)</div>
+        <div class="course" data-id="10" data-prereqs="">Programación (6cr)</div>
+        <div class="course" data-id="11" data-prereqs="5">Proyectos (3cr)</div>
+        <div class="course" data-id="12" data-prereqs="7,8">C.V.V (6cr)</div>
+        <div class="course" data-id="13" data-prereqs="7,8">E.D.O (6cr)</div>
+        <div class="course" data-id="14" data-prereqs="7,8,9">Mecánica (6cr)</div>
+        <div class="course" data-id="15" data-prereqs="9,10">Química (6cr)</div>
+        <div class="course" data-id="16" data-prereqs="7,9">Métodos (6cr)</div>
+        <div class="course" data-id="17" data-prereqs="12,13">C.A.A (6cr)</div>
+        <div class="course" data-id="18" data-prereqs="12">Economía (6cr)</div>
+        <div class="course" data-id="19" data-prereqs="12,13,14">Electro (6cr)</div>
+        <div class="course" data-id="20" data-prereqs="12,14,15">Termodinámica (6cr)</div>
+        <div class="course" data-id="21" data-prereqs="12,14,15">Termodinámica Química (6cr)</div>
+        <div class="course" data-id="22" data-prereqs="16,11">Módulo Interdisciplinario (3cr)</div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
-
