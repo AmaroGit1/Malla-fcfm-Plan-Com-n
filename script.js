@@ -29,46 +29,45 @@ document.addEventListener('DOMContentLoaded', () => {
         { id: 22, name: 'Módulo Interdisciplinario', credits: 3, semester: 4, prereqs: [16, 11] }
     ];
 
+    // Carga los cursos aprobados desde el almacenamiento local del navegador
     let approvedCourses = new Set(JSON.parse(localStorage.getItem('approvedCourses')) || []);
     const totalCredits = coursesData.reduce((sum, course) => sum + course.credits, 0);
 
     const grid = document.getElementById('curriculum-grid');
     const resetButton = document.getElementById('reset-button');
     
+    // Actualiza la barra de progreso y el contador de créditos
     const updateProgress = () => {
         const approvedCredits = coursesData
             .filter(course => approvedCourses.has(course.id))
             .reduce((sum, course) => sum + course.credits, 0);
 
-        const progressPercentage = (approvedCredits / totalCredits) * 100;
+        const progressPercentage = totalCredits > 0 ? (approvedCredits / totalCredits) * 100 : 0;
         
         document.getElementById('credits-approved').textContent = approvedCredits;
         document.getElementById('credits-total').textContent = totalCredits;
         document.getElementById('progress-bar').style.width = `${progressPercentage}%`;
     };
     
+    // Verifica si un curso puede ser tomado (si todos sus prerrequisitos están aprobados)
     const checkAvailability = (course) => {
         if (course.prereqs.length === 0) return true;
         return course.prereqs.every(prereqId => approvedCourses.has(prereqId));
     };
 
+    // La función principal que dibuja todos los cursos en la pantalla
     const renderCourses = () => {
+        // Primero, limpia todas las columnas de semestres
+        for (let i = 1; i <= 4; i++) {
+            const container = document.getElementById(`semester-${i}`);
+            if (container) container.innerHTML = '';
+        }
+
+        // Luego, crea y añade cada tarjeta de curso a su respectivo semestre
         coursesData.forEach(course => {
             const container = document.getElementById(`semester-${course.semester}`);
-            if (!container) return; // Si no existe el contenedor del semestre, no hacer nada
+            if (!container) return;
 
-            // Limpiar contenedor solo una vez al principio del renderizado total
-            if (!container.hasAttribute('data-rendered')) {
-                 container.innerHTML = '';
-                 container.setAttribute('data-rendered', 'true');
-            }
-        });
-
-        // Limpiar atributo para el próximo renderizado completo
-        document.querySelectorAll('[data-rendered]').forEach(el => el.removeAttribute('data-rendered'));
-
-        coursesData.forEach(course => {
-            const container = document.getElementById(`semester-${course.semester}`);
             const card = document.createElement('div');
             card.className = 'course-card';
             card.dataset.id = course.id;
@@ -89,32 +88,34 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
             container.appendChild(card);
         });
+
         updateProgress();
     };
 
+    // Maneja el clic en una tarjeta de curso
     const handleCourseClick = (e) => {
         const card = e.target.closest('.course-card');
-        if (!card || !card.classList.contains('available')) return;
-        
-        const courseId = parseInt(card.dataset.id, 10);
-        
-        approvedCourses.add(courseId);
-        localStorage.setItem('approvedCourses', JSON.stringify([...approvedCourses]));
-        
-        renderCourses();
+        if (card && card.classList.contains('available')) {
+            const courseId = parseInt(card.dataset.id, 10);
+            approvedCourses.add(courseId);
+            localStorage.setItem('approvedCourses', JSON.stringify([...approvedCourses]));
+            renderCourses(); // Vuelve a dibujar todo para reflejar el cambio
+        }
     };
 
+    // Maneja el clic en el botón de reinicio
     const handleReset = () => {
-        if (confirm('¿Estás seguro de que quieres reiniciar todo tu progreso? Esta acción no se puede deshacer.')) {
+        if (confirm('¿Estás seguro de que quieres reiniciar todo tu progreso?')) {
             approvedCourses.clear();
             localStorage.removeItem('approvedCourses');
             renderCourses();
         }
     };
 
+    // Asigna los eventos a los elementos
     grid.addEventListener('click', handleCourseClick);
     resetButton.addEventListener('click', handleReset);
 
-    // Initial Render
+    // Dibuja el estado inicial de la malla al cargar la página
     renderCourses();
 });
