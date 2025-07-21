@@ -173,11 +173,14 @@ header p {
 }
 
 .course-btn.approved {
-    background-color: var(--secondary-color);
+    background-color: var(--secondary-color) !important; /* Añade !important para priorizar este estilo */
+    color: white;
+    box-shadow: 0 0 0 2px rgba(46, 204, 113, 0.3); /* Efecto de resaltado */
 }
 
 .course-btn.approved:hover {
-    background-color: #27ae60;
+    background-color: #27ae60 !important;
+    transform: scale(1.02); /* Efecto más pronunciado al hacer hover */
 }
 
 .course-btn.locked {
@@ -195,7 +198,11 @@ header p {
     bottom: -5px;
     right: 0;
     font-size: 0.7rem;
-    color: #7f8c8d;
+    color: #333333; /* Negro más oscuro en lugar del gris */
+    font-weight: 600; /* Texto en negrita */
+    background-color: rgba(255, 255, 255, 0.7); /* Fondo semitransparente */
+    padding: 1px 5px;
+    border-radius: 3px;
 }
 
 .prerequisites {
